@@ -1,5 +1,5 @@
 #!/bin/bash
-user=$(cut -d: -f1 < /root/.master.info)
+user=sabnzbd
 
 if [[ ! -f /install/.sabnzbd.lock ]]; then
     echo_error "SABnzbd not detected. Exiting!"

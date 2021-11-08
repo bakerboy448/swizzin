@@ -7,7 +7,7 @@ if ! PROWLARR_OWNER="$(swizdb get $app_name/owner)"; then
 fi
 
 user="$PROWLARR_OWNER"
-app_configdir="/home/$user/.config/${app_name^}"
+app_configdir="/var/lib/${app_name^}"
 app_servicefile="${app_name}.service"
 app_dir="/opt/${app_name^}"
 app_lockname="$app_name"

@@ -6,6 +6,7 @@
 . /etc/swizzin/sources/functions/utils
 
 app_name="readarr"
+READARR_OWNER="readarr"
 if [ -z "$READARR_OWNER" ]; then
     if ! READARR_OWNER="$(swizdb get "$app_name/owner")"; then
         READARR_OWNER="$(_get_master_username)"
@@ -17,16 +18,16 @@ else
 fi
 
 user="$READARR_OWNER"
-swiz_configdir="/home/$user/.config"
+swiz_configdir="/var/lib/"
 app_configdir="$swiz_configdir/${app_name^}"
-app_group="$user"
+app_group="media"
 app_port="8787"
 app_reqs=("curl" "sqlite3")
 app_servicefile="$app_name.service"
 app_dir="/opt/${app_name^}"
 app_binary="${app_name^}"
 app_lockname="${app_name//-/}"
-app_branch="develop" # Change to stable when available, tell users to migrate manually.
+app_branch="nightly" # Change to develop/stable when available, tell users to migrate manually.
 
 if [ ! -d "$swiz_configdir" ]; then
     mkdir -p "$swiz_configdir"

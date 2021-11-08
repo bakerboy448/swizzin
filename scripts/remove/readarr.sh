@@ -7,7 +7,11 @@ if ! READARR_OWNER="$(swizdb get $app_name/owner)"; then
 fi
 
 user="$READARR_OWNER"
+<<<<<<< HEAD
 app_configdir="/home/$user/.config/${app_name^}"
+=======
+app_configdir="/var/lib/${app_name^}"
+>>>>>>> f7f2369 (Tweak Swizzin for BakerEdition)
 app_servicefile="${app_name}.service"
 app_dir="/opt/${app_name^}"
 app_lockname="$app_name"
