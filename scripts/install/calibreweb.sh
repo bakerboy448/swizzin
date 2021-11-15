@@ -8,6 +8,9 @@ clbWebUser="calibreweb" # or make this master user?
 #shellcheck source=sources/functions/utils
 . /etc/swizzin/sources/functions/utils
 
+#shellcheck source=sources/functions/kepubify
+. /etc/swizzin/sources/functions/kepubify
+
 if [ -z "$CALIBRE_LIBRARY_USER" ]; then
     if ! CALIBRE_LIBRARY_USER="$(swizdb get calibre/library_user)"; then
         CALIBRE_LIBRARY_USER=$(_get_master_username)
@@ -87,15 +90,6 @@ function _install_calibreweb() {
     echo_progress_done
 }
 
-_install_kepubify() {
-    echo_progress_start "Installing kepubify"
-    wget -q "https://github.com/pgaskin/kepubify/releases/download/v3.1.2/kepubify-linux-64bit" -O /tmp/kepubify >> $log 2>&1
-    chmod a+x /tmp/kepubify
-    mv /tmp/kepubify /usr/local/bin/kepubify
-    #TODO and figure out if it's needed for all cases or not
-    echo_progress_done
-}
-
 _nginx_calibreweb() {
     if [[ -f /install/.nginx.lock ]]; then
         echo_progress_start "Setting up nginx conf"
@@ -161,7 +155,7 @@ _post_changepass() {
 
 _install_dependencies_calibreweb
 _install_calibreweb
-_install_kepubify
+_kepubify
 _systemd_calibreweb
 _nginx_calibreweb
 _post_libdir || {

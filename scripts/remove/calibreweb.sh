@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#shellcheck source=sources/functions/utils
+. /etc/swizzin/sources/functions/utils
+
+#shellcheck source=sources/functions/kepubify
+. /etc/swizzin/sources/functions/kepubify
+
 rm -rf /opt/.venv/calibreweb
 rm -rf /opt/calibreweb
 
@@ -19,5 +25,7 @@ if [ ! -f /install/.calibrecs.lock ] && [ ! -f /install/.calibre.lock ]; then
     swizdb clear calibre/library_path
     swizdb clear calibre/library_user
 fi
+
+_kepubify
 
 rm /install/.calibreweb.lock
