@@ -158,9 +158,9 @@ proxy_next_upstream error timeout invalid_header http_500 http_502 http_503;
 
 # Advanced Proxy Config
 send_timeout 5m;
-proxy_read_timeout 240;
-proxy_send_timeout 240;
-proxy_connect_timeout 240;
+proxy_read_timeout 300;
+proxy_send_timeout 300;
+proxy_connect_timeout 300;
 
 # Basic Proxy Config
 proxy_set_header Host \$host;
