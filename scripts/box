@@ -133,8 +133,9 @@ function _update() {
         noupdate_message="Not updating /etc/swizzin as it is a symlink. Please consult your provider/maintainers in case you believe this is an error."
         noupdate="true"
     elif [[ -e /etc/swizzin/.dev.lock ]]; then
-        noupdate_message="Not updating /etc/swizzin as a dev lockfile is present."
-        noupdate="true"
+        noupdate_message="dev lockfile is present - using custom branch"
+        SWIZ_GIT_REF="fork/main"
+        export SWIZ_GIT_REF
     elif [[ $1 == "--dev" ]]; then
         noupdate_message="Not updating from git due to --dev flag"
         noupdate="true"
