@@ -133,7 +133,7 @@ function _update() {
         noupdate_message="Not updating /etc/swizzin as it is a symlink. Please consult your provider/maintainers in case you believe this is an error."
         noupdate="true"
     elif [[ -e /etc/swizzin/.dev.lock ]]; then
-        noupdate_message="dev lockfile is present - using custom branch"
+        noupdate_message="dev lockfile is present - using custom branch from self repo"
         SWIZ_GIT_REF="fork/main"
         export SWIZ_GIT_REF
     elif [[ $1 == "--dev" ]]; then
@@ -159,7 +159,7 @@ We URGE you to migrate to a supported release if/while you still have the chance
     # If there is nothing blocking the update...
     if [[ -z $noupdate ]]; then
         # Run the git update procedure
-        echo_progress_start "Updating swizzin local repository"
+        echo_progress_start "Updating swizzin repository and checking out [${SWIZ_GIT_REF:-master}]"
         git -C /etc/swizzin checkout "${SWIZ_GIT_REF:-master}" >> $log 2>&1 ||
             {
                 echo_warn "Unclean repo detected, resetting current branch."
@@ -175,7 +175,7 @@ We URGE you to migrate to a supported release if/while you still have the chance
             exit 1
         }
         echo_progress_done "Local repository updated using: ${SWIZ_GIT_REF:-master}"
-        echo_info "HEAD is now set to $(git -C /etc/swizzin log --pretty=format:'%h' -n1)"
+        echo_info "HEAD is now set to $(git -C /etc/swizzin log --pretty='format:%h@%s%b' --abbrev-commit -n1)"
     else
         echo_warn "$noupdate_message"
     fi
