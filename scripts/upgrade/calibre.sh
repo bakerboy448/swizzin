@@ -18,6 +18,5 @@ case "$(_os_arch)" in
         # echo_info "No upgrader yet! Your installation is currently managed by apt. Please use that in the meantime"
         apt_install --only-upgrade calibre
         ;;
-esac
-systemctl restart calibre
+echo_info "Restarting CalibreCS"
 systemctl restart calibrecs
