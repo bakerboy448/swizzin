@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+#shellcheck source=sources/functions/utils
+. /etc/swizzin/sources/functions/utils
+
 if [ ! -f /install/.calibre.lock ]; then
     echo_error "Calibre is not installed"
     exit 1
