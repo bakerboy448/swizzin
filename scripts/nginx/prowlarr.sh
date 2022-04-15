@@ -31,17 +31,11 @@ location ^~ /$app_baseurl {
     proxy_set_header Connection \$http_connection;
     set \$app $app_name;
     include /etc/nginx/snippets/theme-park.conf;
-    # Allow the API External Access via NGINX
 }
-location ^~ /$app_baseurl/api {
-    auth_basic off;
+# Allow the API/Indexer External Access via NGINX
+location ^~ /$app_baseurl(/[0-9]+)?/api {
+    auth_request off;
     proxy_pass http://127.0.0.1:$app_port;
-}
-
-# Allow Indexers  $1 matches the regex
-location ~ /$app_baseurl/[0-9]+/api {
-    auth_request    off;
-    proxy_pass      http://127.0.0.1:$app_port/$app_baseurl/\$1/api;
 }
 
 ARRNGINX
