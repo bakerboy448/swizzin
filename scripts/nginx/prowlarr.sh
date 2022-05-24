@@ -13,8 +13,8 @@ user="$PROWLARR_OWNER"
 
 app_port="9696"
 app_sslport="9797"
-app_baseurl="$app_name"
 app_configdir="/var/lib/${app_name^}"
+app_baseurl="$app_name"
 app_servicefile="${app_name}.service"
 app_branch="nightly"
 
@@ -29,15 +29,15 @@ location ^~ /$app_baseurl {
     proxy_http_version 1.1;
     proxy_set_header Upgrade \$http_upgrade;
     proxy_set_header Connection \$http_connection;
-    set \$app $app_name;
-    include /etc/nginx/snippets/theme-park.conf;
+
+    auth_basic "What's the password?";
+    auth_basic_user_file /etc/htpasswd.d/htpasswd.${master};
 }
 # Allow the API/Indexer External Access via NGINX
 location ^~ /$app_baseurl(/[0-9]+)?/api {
     auth_request off;
     proxy_pass http://127.0.0.1:$app_port;
 }
-
 ARRNGINX
 
 wasActive=$(systemctl is-active $app_servicefile)
@@ -53,7 +53,7 @@ apikey=$(grep -oPm1 "(?<=<ApiKey>)[^<]+" "$app_configdir"/config.xml)
 # ToDo: Logs back to Info
 cat > "$app_configdir"/config.xml << ARRCONFIG
 <Config>
-  <LogLevel>trace</LogLevel>
+  <LogLevel>debug</LogLevel>
   <UpdateMechanism>BuiltIn</UpdateMechanism>
   <BindAddress>127.0.0.1</BindAddress>
   <Port>$app_port</Port>

@@ -29,10 +29,12 @@ location ^~ /$app_baseurl {
     proxy_http_version 1.1;
     proxy_set_header Upgrade \$http_upgrade;
     proxy_set_header Connection \$http_connection;
-    set \$app $app_name;
-    include /etc/nginx/snippets/theme-park.conf;
-    # Allow the API External Access via NGINX
+
+    auth_basic "What's the password?";
+    auth_basic_user_file /etc/htpasswd.d/htpasswd.${master};
 }
+
+# Allow the API External Access via NGINX
 location ^~ /$app_baseurl/api {
     auth_basic off;
     proxy_pass http://127.0.0.1:$app_port;

@@ -13,8 +13,8 @@ user="$RADARR_OWNER"
 
 app_port="7878"
 app_sslport="7979"
-app_baseurl="$app_name"
 app_configdir="/var/lib/${app_name^}"
+app_baseurl="$app_name"
 app_servicefile="${app_name}.service"
 app_branch="nightly"
 
@@ -29,10 +29,13 @@ location ^~ /$app_baseurl {
     proxy_http_version 1.1;
     proxy_set_header Upgrade \$http_upgrade;
     proxy_set_header Connection \$http_connection;
-    set \$app $app_name;
-    include /etc/nginx/snippets/theme-park.conf;
-    # Allow the API External Access via NGINX
+    
+    auth_basic "What's the password?";
+    auth_basic_user_file /etc/htpasswd.d/htpasswd.${master};
 }
+
+# Allow the API External Access via NGINX
+
 location ^~ /$app_baseurl/api {
     auth_basic off;
     proxy_pass http://127.0.0.1:$app_port;
@@ -49,11 +52,9 @@ fi
 
 apikey=$(grep -oPm1 "(?<=<ApiKey>)[^<]+" "$app_configdir"/config.xml)
 
-# Set to Debug as this is alpha software
-# ToDo: Logs back to Info
 cat > "$app_configdir"/config.xml << ARRCONFIG
 <Config>
-  <LogLevel>trace</LogLevel>
+  <LogLevel>info</LogLevel>
   <UpdateMechanism>BuiltIn</UpdateMechanism>
   <BindAddress>127.0.0.1</BindAddress>
   <Port>$app_port</Port>
