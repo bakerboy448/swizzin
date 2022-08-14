@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Use this function to get a dirdata from the array using the command inside an install script app_proxy_dirdata="$(_get_app_dirdata)"
+
+declare -A app_dirdata
+
+# #shellcheck source=sources/functions/app_dirdata
+# . /etc/swizzin/sources/functions/app_dirdata
+# _get_app_dirdata
+
+#shellcheck source=sources/default_dirdatas
+. /etc/swizzin/sources/default_dirdatas
+
+_get_app_dirdata() {
+    which_app="$(basename -- "$0" \.sh)"
+    if [[ -n "${app_dirdata[${which_app}]+${which_app}}" ]]; then
+        printf '%s' "${app_dirdata[${which_app}]}"
+    else
+        echo_error "ERROR get_app_dirdata ${which_app} does not exist or does not have a dirdata defined"
+        exit 1
+    fi
+    return
+}

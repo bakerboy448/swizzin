@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Use this function to get a dirbin from the array using the command inside an install script app_proxy_dirbin="$(_get_app_dirbin)"
+
+declare -A app_dirbin
+
+# #shellcheck source=sources/functions/app_dirbin
+# . /etc/swizzin/sources/functions/app_dirbin
+# _get_app_dirbin
+
+#shellcheck source=sources/default_dirbins
+. /etc/swizzin/sources/default_dirbins
+
+_get_app_dirbin() {
+    which_app="$(basename -- "$0" \.sh)"
+    if [[ -n "${app_dirbin[${which_app}]+${which_app}}" ]]; then
+        printf '%s' "${app_dirbin[${which_app}]}"
+    else
+        echo_error "ERROR get_app_dirbin ${which_app} does not exist or does not have a dirbin defined"
+        exit 1
+    fi
+    return
+}

@@ -36,7 +36,7 @@ _install() {
         echo_error "Failed to download"
         exit 1
     }
-    echo_progress_done "Souce downloaded"
+    echo_progress_done "Source downloaded"
 
     echo_progress_start "Extracting zip"
     rm -rf /opt/bazarr

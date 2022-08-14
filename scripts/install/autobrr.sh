@@ -52,7 +52,7 @@ _add_users() {
         sessionSecret="$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c16)"
 
         mkdir -p "/home/$user/.config/autobrr/"
-        chown "$user": "/var/lib/"
+        chown "$user": "/home/$user/.config"
         chown -R "$user": "/home/$user/.config/autobrr"
 
         cat > "/home/$user/.config/autobrr/config.toml" << CFG
@@ -79,7 +79,7 @@ baseUrl = "/autobrr/"
 #
 # Optional
 #
-logPath = "/var/lib/autobrr/logs/autobrr.log"
+logPath = "/home/${user}/.config/autobrr/logs/autobrr.log"
 # Log level
 #
 # Default: "DEBUG"
