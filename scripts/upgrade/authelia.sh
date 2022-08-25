@@ -33,10 +33,10 @@ else
     systemctl start -q authelia &>> "${log}"
     echo_progress_done "Authelia updated and restarted"
 
-    if [[ -f /install/.nginx.lock ]]; then
-        echo_progress_start "Updating nginx config"
-        bash "/usr/local/bin/swizzin/nginx/authelia.sh"
-        systemctl reload nginx
-        echo_progress_done "Nginx config installed"
-    fi
+    #if [[ -f /install/.nginx.lock ]]; then
+    #    echo_progress_start "Updating nginx config"
+    #    bash "/usr/local/bin/swizzin/nginx/authelia.sh"
+    #    systemctl reload nginx
+    #    echo_progress_done "Nginx config installed"
+    #fi
 fi
