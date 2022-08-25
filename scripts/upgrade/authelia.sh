@@ -25,10 +25,8 @@ else
     esac
     #
     authelia_url="https://github.com/authelia/authelia/releases/download/${authelia_latestv}/authelia-linux-${authelia_arch}.tar.gz"
-    mkdir -p "/opt/authelia"
     wget -qO "/opt/authelia/authelia-linux-${authelia_arch}.tar.gz" "${authelia_url}"
     tar -xf "/opt/authelia/authelia-linux-${authelia_arch}.tar.gz" -C "/opt/authelia/" "authelia-linux-${authelia_arch}"
-    ln -fsn "/opt/authelia/authelia-linux-${authelia_arch}" "/opt/authelia/authelia"
     rm_if_exists "/opt/authelia/authelia-linux-${authelia_arch}.tar.gz"
     systemctl start -q authelia &>> "${log}"
     echo_progress_done "Authelia updated and restarted"
