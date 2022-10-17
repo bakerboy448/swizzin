@@ -2,7 +2,7 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/liaralabs/swizzin/badge)](https://www.codefactor.io/repository/github/liaralabs/swizzin) [![Discord](https://img.shields.io/discord/577667871727943696?logo=discord&logoColor=white)](https://discord.gg/sKjs9UM)  ![GitHub](https://img.shields.io/github/license/liaralabs/swizzin) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/liaralabs/swizzin) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/liaralabs/swizzin)
 
-# 3.5.1 Stable
+# 3.5.3 Stable
 
 [website](https://swizzin.ltd) \| [docs](https://swizzin.ltd/getting-started) \| [discord](https://discord.gg/bDFqAUF)
 
@@ -35,7 +35,7 @@ bash <(curl -sL git.io/swizzin) && . ~/.bashrc
 
 ### Make sure you are root
 
-Either login directly as root or elevate to root with proper login settings with either `su` - or `sudo -i`.
+Either login directly as root or elevate to root with proper login settings with either `su -` or `sudo -i`.
 
 Don't use `su` or something like `sudo -s` (which is the default under Ubuntu when using sudo). You won't be fully logged in as root and certain environment variables not having the full perspective of root will cause failures.
 

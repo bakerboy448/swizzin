@@ -8,6 +8,7 @@ if [ ! -f /install/.calibre.lock ]; then
     exit 1
 fi
 
+if ! check_installed libopengl0; then apt_install libopengl0; fi
 echo_progress_start "Upgrading calibre"
 case "$(_os_arch)" in
     amd64)
