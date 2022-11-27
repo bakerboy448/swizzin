@@ -16,7 +16,7 @@ if [[ -f /install/.qbittorrent.lock ]]; then
     fi
     if [[ $reloadsys == true ]]; then
         systemctl daemon-reload
-        echo_info "qBittorrent systemd service have been updated. Please restart qBittorrent services at your convenience."
+        echo_info "qBittorrent systemd services have been updated. Please restart qBittorrent services at your convenience."
     fi
     #End systemd service updates
     #Check for proxy_cookie_path in nginx to prevent writing cookies to /
