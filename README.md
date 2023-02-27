@@ -2,15 +2,14 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/liaralabs/swizzin/badge)](https://www.codefactor.io/repository/github/liaralabs/swizzin) [![Discord](https://img.shields.io/discord/577667871727943696?logo=discord&logoColor=white)](https://discord.gg/sKjs9UM)  ![GitHub](https://img.shields.io/github/license/liaralabs/swizzin) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/liaralabs/swizzin) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/liaralabs/swizzin)
 
-# 3.5.3 Stable
+# 3.6.0 Stable
 
 [website](https://swizzin.ltd) \| [docs](https://swizzin.ltd/getting-started) \| [discord](https://discord.gg/bDFqAUF)
 
-Please use Discord for all community functions, [feathub](https://feathub.com/liaralabs/swizzin) for feature requests and leave issues for actual issues.
-
+Please use [Discord](https://discord.gg/bDFqAUF) for all community functions, and [GitHub discussions](https://github.com/swizzin/swizzin/discussions) for feature requests and to raise issues.
 
 ## What is swizzin?
-Swizzin is a light, modular seedbox solution that can be installed on Debian 9/10/11 or Ubuntu 18.04/20.04/22.04. The QuickBox package repo has been ported over for your installing pleasure, including the panel -- if you so choose!
+Swizzin is a light, modular seedbox solution that can be installed on Debian 10/11 or Ubuntu 20.04/22.04. The QuickBox package repo has been ported over for your installing pleasure, including the panel -- if you so choose!
 
 Box has been revamped to reduce and consolidate the amount of commands you need to remember to manage your seedbox. More on this below. In addition to that, additional add-on packages can be installed during installation. No need to wait until the installer finishes! Now with unattended installs!
 
@@ -25,12 +24,12 @@ You can see what that looks like here:
 
 Using `wget`:
 ```shell
-bash <(wget -qO - git.io/swizzin) && . ~/.bashrc
+bash <(wget -qO - s5n.sh) && . ~/.bashrc
 ```
 
 Using `curl`:
 ```shell
-bash <(curl -sL git.io/swizzin) && . ~/.bashrc
+bash <(curl -sL s5n.sh) && . ~/.bashrc
 ```
 
 ### Make sure you are root
@@ -71,8 +70,8 @@ bash <(curl -sL git.io/swizzin) --env /path/to/your/env/file/here.env
 
 Long-term support branches only:
 
--   Debian 9/10/11
--   Ubuntu 18.04/20.04/22.04
+-   Debian 10/11
+-   Ubuntu 20.04/22.04
 
 ## Support and Help
 
