@@ -1,5 +1,72 @@
 # Changelog
 
+## [3.8.0]
+
+## May 4, 2023
+
+### New:
+
+- rtorrent: add UDNS install option
+- rtorrent: compile a fancier, featureful version of curl
+
+### Changed:
+
+- rutorrent: enable localhostedmode (will load much faster now!)
+- autodl: change some downloading logic
+- rutorrent: install ffmpeg by default
+- rutorrent: update config for v4.1.4
+
+### Fixed:
+
+- let's encrypt: respects ecc certs for hooks
+- sabnzbd: python packaging logic for v4 (python3 < 3.8)
+- bazarr: python packing logic improvements and remove EOL support (python3 < 3.8)
+- rtorrent: limit piece preloading to torrents uploading at 50KB/s+ (no updater script for this. [It's a simple config change if you want this](https://github.com/swizzin/swizzin/commit/cd3519824a8b7dc631d2d709533024533c87aac8))
+- nginx: remove duplicate packages from install params
+- rutorrent: arm64 support for filemanager (reinstall the plugin if this is you)
+
+## [3.7.1]
+
+## April 15, 2023
+
+### Updated
+- rutorrent: version 4.0.2, 4.0.3 compatibility
+
+### Fixed
+- rtorrent:
+  - resolve lockfile crash
+  - patch xmlrpc-c for newer architectures
+  - support 10gbit throttles
+  - lower repo priority on the installation options
+- nextcloud: version pinned everything except jammy
+- lounge: remove problematic `npm config set`
+
+## [3.7.0]
+
+## April 2, 2023
+
+This release is mainly aimed at improving the ruTorrent issues as a result of a recent surge in development, but a few other improvements made it in as well.
+
+### New
+- New application: jfa-go
+
+### Changed
+- qbittorrent: disabled 4.5 branch on buster due to gcc incompatibilities
+- rtorrent: compiliation improvements and better LTO settings thanks to @stickz
+- rtorrent: installation speed improvements thanks to @stickz
+- php: will now set path in the pool config, avoiding the need to manually set path in ruTorrent configs
+- readme: removed more feathub links
+
+### Fixed
+- rtx: revert to filemanager pinning on 4.0 rutorrent version
+- rtx: better tag detection of your current installation
+- rtx: ensure rutorrent directory is a git safe.dir
+- rutorrent: better version matching, avoid beta releases now that 4.0 is stable
+- rutorrent: botched scgi creation
+- quota: fix rutorrent diskspace creation (use existing function rather than duplicate code)
+- wireguard: finally found the pesky bug causing rt kernel to be installed in buster (should be generally more functional in buster now as well)
+- box list: not showing package names
+
 ## [3.6.0]
 
 ## January 21, 2023
