@@ -31,6 +31,7 @@ if [[ -f /install/.bazarr.lock ]]; then
         systemctl try-restart bazarr
     fi
 
+    echo_info "user is ${user}"
     if ! grep -q numpy <(/opt/.venv/bazarr/bin/pip freeze); then
         sudo -u ${user} bash -c "/opt/.venv/bazarr/bin/pip3 install -r /opt/bazarr/requirements.txt" > /dev/null 2>&1
         systemctl try-restart bazarr
