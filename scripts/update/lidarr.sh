@@ -15,7 +15,6 @@ if [[ -f /install/.lidarr.lock ]]; then
     #Move old homedirectory installations to opt and switch to netcore
     user="$LIDARR_OWNER"
     if [[ -d /home/$user/Lidarr ]]; then
-        echo_info "Moving Lidarr instllation to opt and switching it to net-core"
         wasActive=$(systemctl is-active lidarr)
         systemctl stop lidarr
 
@@ -64,24 +63,26 @@ if [[ -f /install/.lidarr.lock ]]; then
         systemctl daemon-reload
 
         if [[ -f /install/.nginx.lock ]]; then
-            echo_progress_start "Configuring nginx"
+            echo_progress_start "Configuring nginx for lidarr"
             bash /etc/swizzin/scripts/nginx/lidarr.sh
             systemctl reload nginx
             echo_progress_done "nginx configured"
         fi
 
         if [[ $wasActive = "active" ]]; then
+            echo_progress_start "Starting lidarr"
             systemctl start lidarr
+            echo_progress_done "lidarr started"
         fi
-        echo_success "Lidarr moved to opt on netcore"
 
     fi
+
     if [[ -f /install/.nginx.lock ]]; then
-        if grep -q "8686/lidarr" /etc/nginx/apps/lidarr.conf; then
-            echo_progress_start "Updating nginx for config lidarr"
+        if grep -q "8686/lidarr" /etc/nginx/apps/lidarr.conf || ! grep -q "calendar" /etc/nginx/apps/lidarr.conf; then
+            echo_progress_start "Updating nginx for config for lidarr"
             bash /etc/swizzin/scripts/nginx/lidarr.sh
-            systemctl reload nginx
-            echo_progress_done "nginx updated."
+            systemctl reload nginx -q
+            echo_progress_done "nginx conf for lidarr upgraded"
         fi
     fi
 fi
