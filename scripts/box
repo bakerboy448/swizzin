@@ -156,16 +156,16 @@ We URGE you to migrate to a supported release if/while you still have the chance
         # Run the git update procedure
         git -C /etc/swizzin fetch --all --tags --prune --progress
         echo_progress_start "Updating swizzin repository and checking out [${SWIZ_GIT_REF:-main}]"
-        git -C /etc/swizzin checkout "${SWIZ_GIT_REF:-main}" >>$log 2>&1 ||
+        git -C /etc/swizzin checkout "${SWIZ_GIT_REF:-main}" >> $log 2>&1 ||
             {
                 echo_warn "Unclean repo detected, resetting on ${SWIZ_GIT_REF:-fork/main}"
-                git -C /etc/swizzin reset --hard ${SWIZ_GIT_REF:-fork/main} >>$log 2>&1
+                git -C /etc/swizzin reset --hard ${SWIZ_GIT_REF:-fork/main} >> $log 2>&1
             }
         {
             #shellcheck disable=SC2129
             echo_info "Fetching and pruning"
             echo_warn "Pulling Repo of ${SWIZ_GIT_REF:-fork/main}"
-            git -C /etc/swizzin pull >>$log 2>&1
+            git -C /etc/swizzin pull >> $log 2>&1
         } || {
             echo_error "Failed to update from git"
             exit 1
